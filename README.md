@@ -13,6 +13,10 @@ Like what you see? :eyes: Give us a GitHub Star! :star:
 
 It helps define, organize, track and manage work across individuals and teams. Focalboard comes in two editions:
 
+## DOCKER PERSISTENCE
+
+Persistence is done via the `docker/data/` directory.
+
 * **Focalboard Personal Desktop**: A stand-alone desktop app for your todos and personal projects. This is a single-tenant locally run server running Focalboard for optimal speed and performance.
 
 * **Focalboard Personal Server**: A self-hosted server for your team to collaborate.

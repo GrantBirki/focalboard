@@ -16,6 +16,15 @@ LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildNumber=$(BUILD
 LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildDate=$(BUILD_DATE)"
 LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildHash=$(BUILD_HASH)"
 
+run:
+	@echo "\e[34m[#] Killing old docker processes\e[0m"
+	@cd docker/ && docker-compose rm -fs || exit 1
+
+	@echo "\e[34m[#] Building docker containers\e[0m"
+	@cd docker/ && docker-compose up --build -d || exit 1
+
+	@echo "\e[32m[#] The Docker stack is now running!\e[0m"
+
 all: webapp server ## Build server and webapp.
 
 prebuild: ## Run prebuild actions (install dependencies etc.).

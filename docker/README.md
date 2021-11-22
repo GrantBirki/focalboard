@@ -1,5 +1,9 @@
 # Deploy Focalboard with Docker
 
+## DOCKER PERSISTENCE
+
+Persistence is done via the `data/` directory.
+
 ## Docker
 
 The Dockerfile gives a quick and easy way to pull the latest Focalboard server and deploy it locally.

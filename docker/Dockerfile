@@ -33,6 +33,4 @@ EXPOSE 8000/tcp
 
 EXPOSE 8000/tcp 9092/tcp
 
-VOLUME /data
-
 CMD ["/opt/focalboard/bin/focalboard-server"]
