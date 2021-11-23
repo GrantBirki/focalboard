@@ -26,6 +26,12 @@ run:
 
 	@echo "\e[32m[#] The Docker stack is now running!\e[0m"
 
+# For this command, you will need to do the following:
+# 1. create the docker/data/ dir
+# 2. create the docker/data/focalboard.db file
+# 3. make the db file 777
+# 4. make the docker/data/ dir 777
+# run 'make run-arm' and you should be good to go
 run-arm:
 	@echo "\e[34m[#] For ARM systems only!\e[0m"
 	@echo "\e[34m[#] Make sure the docker/data/ dir is 777\e[0m"
