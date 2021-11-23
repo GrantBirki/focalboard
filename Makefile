@@ -41,7 +41,7 @@ run-arm:
 	@echo "\e[34m[#] Building docker image with buildx for ARM\e[0m"
 	@docker buildx build -t focalboard-birki-arm:latest --platform linux/arm64 -f docker/Dockerfile.arm .
 	@echo "\e[34m[#] Bringing up with docker-compose\e[0m"
-	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml up || exit
+	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml up -d || exit
 
 server-docker: ## Build server for Docker Architectures.
 	mkdir -p bin/linux
