@@ -34,6 +34,7 @@ run:
 # run 'make run-arm' and you should be good to go
 run-arm:
 	@echo "\e[34m[#] For ARM systems only!\e[0m"
+	@echo "\e[34m[#] CAT this file for notes\e[0m"
 	@echo "\e[34m[#] Make sure the docker/data/ dir is 777\e[0m"
 	@echo "\e[34m[#] Killing old docker processes\e[0m"
 	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml rm -fs || exit 1
