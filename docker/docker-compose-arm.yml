@@ -4,7 +4,7 @@ services:
     restart: always
     build:
       context: ../
-      dockerfile: docker/Dockerfile.arm-arch
+      dockerfile: docker/Dockerfile.arm
     container_name: focalboard
     ports:
       - 9000:8000

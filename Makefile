@@ -37,11 +37,11 @@ run-arm:
 	@echo "\e[34m[#] CAT this file for notes\e[0m"
 	@echo "\e[34m[#] Make sure the docker/data/ dir is 777\e[0m"
 	@echo "\e[34m[#] Killing old docker processes\e[0m"
-	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml rm -fs || exit 1
+	@cd docker/ && docker-compose -f docker-compose-arm.yml rm -fs || exit 1
 	@echo "\e[34m[#] Building docker image with buildx for ARM\e[0m"
 	@docker buildx build -t focalboard-birki-arm:latest --platform linux/arm64 -f docker/Dockerfile.arm .
 	@echo "\e[34m[#] Bringing up with docker-compose\e[0m"
-	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml up -d || exit
+	@cd docker/ && docker-compose -f docker-compose-arm.yml up -d || exit
 
 server-docker: ## Build server for Docker Architectures.
 	mkdir -p bin/linux
