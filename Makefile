@@ -25,6 +25,15 @@ run:
 
 	@echo "\e[32m[#] The Docker stack is now running!\e[0m"
 
+run-arm:
+	@echo "\e[34m[#] Killing old docker processes (arm)\e[0m"
+	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml rm -fs || exit 1
+
+	@echo "\e[34m[#] Building docker containers (arm)\e[0m"
+	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml up --build -d || exit 1
+
+	@echo "\e[32m[#] The Docker stack is now running (arm)!\e[0m"
+
 all: webapp server ## Build server and webapp.
 
 prebuild: ## Run prebuild actions (install dependencies etc.).
@@ -48,6 +57,11 @@ server-linux: ## Build server for Linux.
 	mkdir -p bin/linux
 	$(eval LDFLAGS += -X "github.com/mattermost/focalboard/server/model.Edition=linux")
 	cd server; env GOOS=linux GOARCH=amd64 go build -ldflags '$(LDFLAGS)' -o ../bin/linux/focalboard-server ./main
+
+server-linux-arm: ## Build server for Linux on an arm platform.
+	mkdir -p bin/linux
+	$(eval LDFLAGS += -X "github.com/mattermost/focalboard/server/model.Edition=linux")
+	cd server; env GOOS=linux GOARCH=arm go build -ldflags '$(LDFLAGS)' -o ../bin/linux/focalboard-server ./main
 
 server-win: ## Build server for Windows.
 	$(eval LDFLAGS += -X "github.com/mattermost/focalboard/server/model.Edition=win")

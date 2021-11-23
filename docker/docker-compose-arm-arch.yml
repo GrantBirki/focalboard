@@ -1,0 +1,14 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.arm-arch
+    container_name: focalboard
+    ports:
+      - 8000:8000
+    environment:
+      - VIRTUAL_HOST=focalboard.local
+      - VIRTUAL_PORT=8000
+    volumes:
+      - "./data:/data"
