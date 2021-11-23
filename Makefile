@@ -17,7 +17,7 @@ LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildDate=$(BUILD_D
 LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildHash=$(BUILD_HASH)"
 
 run:
-	@echo "\e[34m[#] Use 'make run-arm' for Pi systems\e[0m"
+	@echo "\e[34m[#] For 64-bit systems only!\e[0m"
 	@echo "\e[34m[#] Killing old docker processes\e[0m"
 	@cd docker/ && docker-compose rm -fs || exit 1
 
@@ -26,14 +26,10 @@ run:
 
 	@echo "\e[32m[#] The Docker stack is now running!\e[0m"
 
-run-arm:
-	@echo "\e[34m[#] Killing old docker processes (arm)\e[0m"
-	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml rm -fs || exit 1
-
-	@echo "\e[34m[#] Building docker containers (arm)\e[0m"
-	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml up --build -d || exit 1
-
-	@echo "\e[32m[#] The Docker stack is now running (arm)!\e[0m"
+server-docker: ## Build server for Docker Architectures.
+	mkdir -p bin/linux
+	$(eval LDFLAGS += -X "github.com/mattermost/focalboard/server/model.Edition=linux")
+	cd server; env GOOS=$(os) GOARCH=$(arch) go build -ldflags '$(LDFLAGS)' -o ../bin/linux/focalboard-server ./main
 
 all: webapp server ## Build server and webapp.
 
