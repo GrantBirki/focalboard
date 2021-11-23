@@ -17,6 +17,7 @@ LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildDate=$(BUILD_D
 LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildHash=$(BUILD_HASH)"
 
 run:
+	@echo "\e[34m[#] Use 'make run-arm' for Pi systems\e[0m"
 	@echo "\e[34m[#] Killing old docker processes\e[0m"
 	@cd docker/ && docker-compose rm -fs || exit 1
 
