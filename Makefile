@@ -17,7 +17,7 @@ LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildDate=$(BUILD_D
 LDFLAGS += -X "github.com/mattermost/focalboard/server/model.BuildHash=$(BUILD_HASH)"
 
 run:
-	@echo "\e[34m[#] For 64-bit systems only!\e[0m"
+	@echo "\e[34m[#] For 64-bit systems only! For pi use run-arm\e[0m"
 	@echo "\e[34m[#] Killing old docker processes\e[0m"
 	@cd docker/ && docker-compose rm -fs || exit 1
 
@@ -25,6 +25,16 @@ run:
 	@cd docker/ && docker-compose up --build -d || exit 1
 
 	@echo "\e[32m[#] The Docker stack is now running!\e[0m"
+
+run-arm:
+	@echo "\e[34m[#] For ARM systems only!\e[0m"
+	@echo "\e[34m[#] Make sure the docker/data/ dir is 777\e[0m"
+	@echo "\e[34m[#] Killing old docker processes\e[0m"
+	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml rm -fs || exit 1
+	@echo "\e[34m[#] Building docker image with buildx for ARM\e[0m"
+	@docker buildx build -t focalboard-birki-arm:latest --platform linux/arm64 -f docker/Dockerfile.arm .
+	@echo "\e[34m[#] Bringing up with docker-compose\e[0m"
+	@cd docker/ && docker-compose -f docker-compose-arm-arch.yml up || exit
 
 server-docker: ## Build server for Docker Architectures.
 	mkdir -p bin/linux
