@@ -8,7 +8,7 @@ Persistence is done via the `data/` directory.
 
 The Dockerfile gives a quick and easy way to pull the latest Focalboard server and deploy it locally.
 
-```
+```bash
 docker build -t focalboard .
 docker run -it -v "/home/user/focalboard-data:/data" -p 80:8000 focalboard
 ```
@@ -23,7 +23,7 @@ Docker-Compose provides the option to automate the build and run step, or even i
 
 To start the server run
 
-```
+```bash
 docker-compose up
 ```
 
@@ -31,6 +31,6 @@ This will automatically build the focalboard image and start it with the http po
 
 To run focalboard with a nginx proxy and a postgres backend run
 
-```
+```bash
 docker-compose -f docker-compose-db-nginx.yml up
 ```

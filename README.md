@@ -13,7 +13,25 @@ Like what you see? :eyes: Give us a GitHub Star! :star:
 
 It helps define, organize, track and manage work across individuals and teams. Focalboard comes in two editions:
 
-## DOCKER PERSISTENCE
+## Birki Notes
+
+See the sub docs here [`docker/README.md`](docker/README.md)
+
+### Running
+
+Running on a 64-bit system:
+
+```bash
+make run
+```
+
+Running on an ARM system:
+
+```bash
+make run-arm
+```
+
+### DOCKER PERSISTENCE
 
 Persistence is done via the `docker/data/` directory.
 
